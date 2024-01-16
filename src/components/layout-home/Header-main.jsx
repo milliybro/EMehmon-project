@@ -3,10 +3,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./HeaderMain.scss";
-import logo from "../../assets/HomePage/Logo-black.png";
+import logo from "../../assets/HomePage/logo-black.png";
 import accountImage from "../../assets/HomePage/header-account-image.png";
 import play from "../../assets/HomePage/play-circle.png";
-import HomeCarousel from "../Home-Carousel/HomeCarousel";
+// import HomeCarousel from "../Home-Carousel/HomeCarousel";
 
 const HeaderMain = () => {
   const [show, setShow] = useState(false);

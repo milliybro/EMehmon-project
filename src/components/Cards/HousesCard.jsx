@@ -70,12 +70,12 @@ HousesCard.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   address: PropTypes.string,
-  price: PropTypes.string,
-  breakfast: PropTypes.string,
-  recommended: PropTypes.string,
-  discount: PropTypes.string,
-  season: PropTypes.string,
-  rating: PropTypes.string,
+  price: PropTypes.number,
+  breakfast: PropTypes.boolean,
+  recommended: PropTypes.boolean,
+  discount: PropTypes.number,
+  season: PropTypes.boolean,
+  rating: PropTypes.number,
 };
 
 export default HousesCard;
