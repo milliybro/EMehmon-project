@@ -8,6 +8,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import step from "../../assets/HomePage/step-left.png";
 import HousesCard from "../../components/Cards/HousesCard";
 import houses from "../../components/data/houses-card";
+import Joining from "../../components/joining/Joining";
+import SeasonCarousel from "../../components/Cards/SeasonCarousel";
+import TouristCarousel from "../../components/Cards/TouristCarousel";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -129,6 +132,9 @@ const HomePage = () => {
           })}
         </div>
       </section>
+      <Joining />
+      <SeasonCarousel />
+      <TouristCarousel />
     </Fragment>
   );
 };
