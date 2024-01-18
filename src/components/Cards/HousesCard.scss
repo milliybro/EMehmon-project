@@ -4,6 +4,9 @@
 }
 .house__card {
   .house__card-image {
+    img{
+      width: 100%;
+    }
     position: relative;
     .image-options {
       position: absolute;

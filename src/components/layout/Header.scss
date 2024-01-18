@@ -1,6 +1,6 @@
 header {
   padding: 16px auto;
-  .header-main {
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,15 +9,15 @@ header {
       justify-content: center;
       gap: 24px;
       a {
-        color: rgba(255, 255, 255, 1);
+        color: #233E40;
       }
     }
     &__options {
       display: flex;
       gap: 24px;
       select {
-        background-color: rgba(35, 46, 64, 1);
-        color: rgba(255, 255, 255, 1);
+        background-color: transparent;
+        color: #233E40;
         border: none;
       }
       button {
@@ -34,3 +34,15 @@ header {
   }
 }
 
+.menu{
+  display: flex;
+  justify-content: space-between !important;
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 100%;
+  flex-grow: 0 !important;
+  align-items: center;
+}

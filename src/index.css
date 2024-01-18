@@ -25,6 +25,6 @@ li{
   font-weight: bold;
  }
 
- main{
-  background: #FAFAFA;
+ body{
+  background: #FAFAFA !important;
  }

@@ -1,5 +1,6 @@
 const houses = [
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -11,6 +12,7 @@ const houses = [
     image: "/src/assets/houses/house-1.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -22,6 +24,7 @@ const houses = [
     image: "/src/assets/houses/house-2.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -33,6 +36,7 @@ const houses = [
     image: "/src/assets/houses/house-3.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -44,6 +48,7 @@ const houses = [
     image: "/src/assets/houses/house-4.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -55,6 +60,7 @@ const houses = [
     image: "/src/assets/houses/house-5.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -66,6 +72,7 @@ const houses = [
     image: "/src/assets/houses/house-6.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",
@@ -77,6 +84,7 @@ const houses = [
     image: "/src/assets/houses/house-7.png",
   },
   {
+    id: "neptun",
     name: "Hotel Neptun Tashkent Pool&Spa",
     address: "8 ул. Лянгар, Ташкент",
     price: "5320000",

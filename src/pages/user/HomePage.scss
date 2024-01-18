@@ -2,39 +2,43 @@
   position: relative;
   .hotels {
     position: absolute;
-    top: -97px;
+    top: -100px;
     width: 85%;
     border-radius: 40px;
     background: var(--Color-Pallete-White, #fff);
     box-shadow: 0px 40px 64px -32px rgba(119, 126, 144, 0.1);
     padding: 48px;
+    @media (max-width: 1260px){
+
+    }
   }
+
 }
 
 .section-header {
-   margin-bottom: 40px;
-   h3 {
-     padding-bottom: 16px;
-     color: var(--Color-Pallete-Dark, #232e40);
-     text-align: center;
-     font-family: Forma DJR Cyrillic Deck;
-     font-size: 32px;
-     font-style: normal;
-     font-weight: 700;
-     line-height: 140%; /* 44.8px */
-     letter-spacing: 0.64px;
-   }
-   p {
-     color: var(--Color-Pallete-Gray, #777e90);
-     text-align: center;
-     font-family: Onest;
-     font-size: 18px;
-     font-style: normal;
-     font-weight: 400;
-     line-height: 140%; /* 25.2px */
-     letter-spacing: 0.36px;
-   }
- }
+  margin-bottom: 40px;
+  h3 {
+    padding-bottom: 16px;
+    color: var(--Color-Pallete-Dark, #232e40);
+    text-align: center;
+    font-family: Forma DJR Cyrillic Deck;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 44.8px */
+    letter-spacing: 0.64px;
+  }
+  p {
+    color: var(--Color-Pallete-Gray, #777e90);
+    text-align: center;
+    font-family: Onest;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 25.2px */
+    letter-spacing: 0.36px;
+  }
+}
 
 #step_holiday {
   padding-top: 250px;
@@ -66,6 +70,8 @@
   .step__main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    img {
+    }
     .step__main-steps {
       margin-top: 58px;
       display: flex;
@@ -99,7 +105,60 @@
         font-style: normal;
         font-weight: 400;
         line-height: 150%; /* 24px */
+        @media (max-width: 630px) {
+          max-width: 400px;
+        }
+      }
+      @media (max-width: 1000px) {
+        margin: 20px auto;
       }
     }
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(1, 1fr);
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+#favourite-houses {
+  .houses-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 24px;
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 770px) {
+      display: none;
+    }
+  }
+}
+
+.houses-items__mobile {
+  display: none;
+  @media (max-width: 770px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
+  @media (max-width: 571px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.hoteli {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  button {
+    margin-top: 35px;
+    border-radius: 16px;
+    background: var(--Color-Pallete-Blue, #3276ff);
+    padding: 16px 24px;
+  }
+  @media (max-width: 1260px){
+    flex-wrap: wrap;
   }
 }

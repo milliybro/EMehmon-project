@@ -32,6 +32,13 @@ footer {
         }
       }
     }
+    @media (max-width: 780px){
+      grid-template-columns: repeat(2,1fr);
+      grid-gap: 30px;
+    }
+    @media (max-width: 450px){
+      grid-template-columns: repeat(1,1fr);
+    }
   }
   .footer-bottom {
    padding: 60px 0;

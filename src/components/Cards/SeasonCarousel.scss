@@ -90,7 +90,11 @@
 
 .slick-prev {
   position: absolute !important;
-  left: 1200px !important;
+  left: 1200px !important; 
+  @media (max-width: 1400px){
+    left: 0;
+    right: 50px;
+  }
 }
 
 .slick-next {

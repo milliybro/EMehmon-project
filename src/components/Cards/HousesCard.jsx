@@ -3,8 +3,10 @@ import { PropTypes } from "prop-types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "./HousesCard.scss";
+import { Link } from "react-router-dom";
 
 const HousesCard = ({
+  id,
   name,
   address,
   price,
@@ -17,20 +19,20 @@ const HousesCard = ({
 }) => {
   return (
     <Fragment>
-      <div className="house__card">
+      <Link to={`hotels/${id}`} className="house__card">
         <div className="house__card-image">
           <LazyLoadImage className="house-image" src={image} />
           <div className="image-options">
             <span className="breakfast">
-              Завтрак {breakfast === "true" ? "влючен" : "выключен"}
+              Завтрак {breakfast ? "влючен" : "выключен"}
             </span>
-            {recommended === "true" ? (
+            {recommended ? (
               <span className="rec">Рекомендуем</span>
             ) : null}
             <span className="discount">
-              Скидки {discount === "true" ? "50" : "0"}50%
+              Скидки {discount ? "50" : "0"}%
             </span>
-            {season === "true" ? (
+            {season ? (
               <span className="season">Сезонное предложение</span>
             ) : null}
           </div>
@@ -61,12 +63,13 @@ const HousesCard = ({
             <span>от {price} сум</span>/ночь
           </h4>
         </div>
-      </div>
+      </Link>
     </Fragment>
   );
 };
 
 HousesCard.propTypes = {
+  id: PropTypes.string,
   image: PropTypes.string,
   name: PropTypes.string,
   address: PropTypes.string,

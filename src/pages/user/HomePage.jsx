@@ -1,6 +1,17 @@
 import { Fragment, React, useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Tab, Tabs } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Tab,
+  Tabs,
+} from "@mui/material";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import Typography from "@mui/material/Typography";
 import "./HomePage.scss";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -11,6 +22,9 @@ import houses from "../../components/data/houses-card";
 import Joining from "../../components/joining/Joining";
 import SeasonCarousel from "../../components/Cards/SeasonCarousel";
 import TouristCarousel from "../../components/Cards/TouristCarousel";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { Button } from "react-bootstrap";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,12 +58,19 @@ function a11yProps(index) {
   };
 }
 const HomePage = () => {
+  const [date, setDate] = useState([dayjs("2022-04-17"), dayjs("2022-04-21")]);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   console.log(value);
+
+  const [age, setAge] = useState("");
+
+  const tabsChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <Fragment>
       <section id="hotel_search">
@@ -65,8 +86,63 @@ const HomePage = () => {
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
-                Item One
-                <button onChange={handleChange}>Next</button>
+                <div className="hoteli">
+                  <div className="pt-1 d-flex flex-column gap-2">
+                    <label htmlFor="Длительность пребывания">
+                      Куда хотите поехать?
+                    </label>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={'tash'}
+                        label=""
+                        onChange={tabsChange}
+                      >
+                        <MenuItem value={"tash"}>г. Ташкент</MenuItem>
+                        <MenuItem value={"fer"}>Фергана</MenuItem>
+                        <MenuItem value={"sam"}>Самарканд</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer
+                      components={["DateRangePicker", "DateRangePicker"]}
+                    >
+                      <DemoItem
+                        label="Длительность пребывания"
+                        component="DateRangePicker"
+                      >
+                        <DateRangePicker
+                          value={date}
+                          onChange={(newValue) => setValue(newValue)}
+                        />
+                      </DemoItem>
+                    </DemoContainer>
+                  </LocalizationProvider>
+                  <div className="pt-1 d-flex flex-column gap-2">
+                    <label htmlFor="Длительность пребывания">
+                      Кол-во гостей 
+                    </label>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={2}
+                        label=""
+                        onChange={tabsChange}
+                      >
+                        <MenuItem value={2}>2 взрослых</MenuItem>
+                        <MenuItem value={1}>1 взрослых</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                  <Button>Начать поиск</Button>
+                </div>
               </CustomTabPanel>
               <CustomTabPanel value={value} index={1}>
                 Item Two
@@ -127,9 +203,16 @@ const HomePage = () => {
             <h3>Дома, которые нравятся гостям</h3>
             <p>Упростите свои планы для путешествия – с нами это легко!</p>
           </div>
-          {houses.map((house, i) => {
-            <HousesCard {...house} key={i}></HousesCard>;
-          })}
+          <div className="houses-items">
+            {houses.map((item, i) => (
+              <HousesCard key={i} {...item} />
+            ))}
+          </div>
+          <div className="houses-items__mobile">
+            {houses.slice(0, 4).map((item, i) => (
+              <HousesCard key={i} {...item} />
+            ))}
+          </div>
         </div>
       </section>
       <Joining />
