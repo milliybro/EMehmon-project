@@ -1,6 +1,6 @@
 import { Breadcrumb } from "antd";
 import PropTypes from "prop-types";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -36,6 +36,9 @@ import HousesCard from "../../components/Cards/HousesCard";
 import Joining from "../../components/joining/Joining";
 import SeasonCarousel from "../../components/Cards/SeasonCarousel";
 import TouristCarousel from "../../components/Cards/TouristCarousel";
+import { LuHotel } from "react-icons/lu";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -94,6 +97,9 @@ const HotelPage = () => {
     setAge(event.target.value);
   };
   const position = [41.505, 62.09];
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <Fragment>
       <div className="container">
@@ -258,7 +264,7 @@ const HotelPage = () => {
                     {hotel.map((e) => (
                       <div className="hotel-card">
                         <span>
-                          <LazyLoadImage src={e.image} />
+                          <LuHotel />
                         </span>
                         <h5>{e.name}</h5>
                       </div>
@@ -288,14 +294,21 @@ const HotelPage = () => {
           <div className="only-map">
             <div>
               <iframe
-                id="inlineFrameExample"
-                title="Inline Frame Example"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1781.1206562071334!2d69.33586378211079!3d41.34200757079386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef5a58c63cbfd%3A0xcb882f0ad7acf773!2sRaqamli%20texnologiyalar%20vazirligi!5e0!3m2!1sen!2sus!4v1705658612196!5m2!1sen!2sus"
+                width="600"
+                height="450"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
           </div>
         </div>
-        <section id="favourite-houses">
+        <section
+          id="favourite-houses"
+          data-aos="fade-up"
+          data-aos-duration="900"
+        >
           <div className="container">
             <div className="houses__header section-header">
               <h3 style={{ textAlign: "left", marginBottom: "-30px" }}>
@@ -309,9 +322,15 @@ const HotelPage = () => {
             </div>
           </div>
         </section>
-        <Joining />
-        <SeasonCarousel />
-        <TouristCarousel />
+        <section data-aos="fade-up" data-aos-duration="900">
+          <Joining />
+        </section>
+        <section data-aos="fade-up" data-aos-duration="900">
+          <SeasonCarousel />
+        </section>
+        <section data-aos="fade-up" data-aos-duration="900">
+          <TouristCarousel />
+        </section>
       </div>
     </Fragment>
   );

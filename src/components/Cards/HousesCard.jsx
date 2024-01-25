@@ -4,6 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import "./HousesCard.scss";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const HousesCard = ({
   id,
@@ -23,15 +24,16 @@ const HousesCard = ({
         <div className="house__card-image">
           <LazyLoadImage className="house-image" src={image} />
           <div className="image-options">
-            <span className="breakfast">
-              Завтрак {breakfast ? "влючен" : "выключен"}
-            </span>
-            {recommended ? (
-              <span className="rec">Рекомендуем</span>
+            {breakfast ? (
+              <span className="breakfast">
+                Завтрак {breakfast ? "влючен" : "выключен"}
+              </span>
             ) : null}
-            <span className="discount">
-              Скидки {discount ? "50" : "0"}%
-            </span>
+
+            {recommended ? <span className="rec">Рекомендуем</span> : null}
+            {discount == 0 ? null : (
+              <span className="discount">Скидки {discount}%</span>
+            )}
             {season ? (
               <span className="season">Сезонное предложение</span>
             ) : null}
@@ -62,6 +64,7 @@ const HousesCard = ({
           <h4>
             <span>от {price} сум</span>/ночь
           </h4>
+          <Button>Посмотреть номера</Button>
         </div>
       </Link>
     </Fragment>

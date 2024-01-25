@@ -44,15 +44,15 @@ const SeasonCarousel = () => {
     <section id="season">
       <div className="container">
         <div className="season-header">
-          <h2>Сезонные предложения</h2>
+          <h2>Последние новости</h2>
         </div>
         <Slider {...settings} className="season__items">
           {hotelSeasons.map((card, index) => (
             <div className="seasons-card" key={index}>
               <img alt={card.title} src={card.image} width="100" height="100" />
-              <span className="discount">Скидка {card.discount}%</span>
+              <h6>{card.date}</h6>
               <h5>{card.title}</h5>
-              <p>от ${card.price}</p>
+              <p>{card.description}</p>
             </div>
           ))}
         </Slider>

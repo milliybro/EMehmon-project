@@ -1,0 +1,12 @@
+.loader-container{
+   width: 100vw;
+   height: 100vh;
+   transition: 0.5s;
+   animation-name: loading;
+   animation-duration: 4s;
+}
+
+@keyframes loading {
+   from {background-color: black;}
+   to {background-color: transparent;}
+ }

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./HomeCarousel.scss";
 import houses from "../data/houses-card";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 const HomeCarousel = () => {
   const settings = {
     dots: false,
@@ -44,7 +45,8 @@ const HomeCarousel = () => {
       <div className="container">
         <Slider {...settings} className="season__items">
           {houses.map((card, index) => (
-            <div
+            <Link
+            to={`hotels/${card.id}`}
               key={index}
               id="curve"
               className="card"
@@ -83,7 +85,7 @@ const HomeCarousel = () => {
                 </div>
               </div>
               <div className="card-blur"></div>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>

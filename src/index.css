@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -11,20 +13,21 @@
   margin: 0 auto;
 }
 
-a{
+a {
   text-decoration: none !important;
 }
-li{
+
+li {
   list-style-type: none;
 }
 
 @font-face {
   font-family: "Forma DJR Cyrillic Deck";
   src: local("Forma DJR Cyrillic Deck"),
-   url("./assets/fonts/FormaDJRCyrillicDeck-Medium-Testing.otf") format("truetype");
+    url("./assets/fonts/FormaDJRCyrillicDeck-Medium-Testing.otf") format("truetype");
   font-weight: bold;
- }
+}
 
- body{
+body {
   background: #FAFAFA !important;
- }
+}
