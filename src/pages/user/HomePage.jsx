@@ -260,7 +260,10 @@ const HomePage = () => {
                       {isCity && <div className="clickmenu"></div>}
                     </div>
                   </div>
-                  <div className="position-relative calen">
+                  <div className="position-relative calen pt-1 d-flex flex-column gap-2">
+                    <label htmlFor="Длительность пребывания">
+                      Длительность пребывания
+                    </label>
                     <CRangePicker />
                     {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer
@@ -340,10 +343,10 @@ const HomePage = () => {
                         className="people-count d-flex"
                         onClick={toggleDropdown}
                       >
-                        {" "}
+
                         {countAdult}{" "}
-                        {countAdult === 1 ? "взрослый" : "взрослых"}{" "}
-                        {countChildren} Детей {countRooms}{" "}
+                        {countAdult === 1 ? "взрослый" : "взрослых"},{" "}
+                        {countChildren} детей, {countRooms}{" "}
                         {countRooms === 1 ? "номер" : "номера"}
                       </button>
                       <span className="nomer">
