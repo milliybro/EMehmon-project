@@ -1,6 +1,6 @@
-import { Fragment, React, useEffect, useState } from "react";
+import { Fragment, React, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Modal, Tab, Tabs } from "@mui/material";
+import { Box, Modal, Tab, Tabs, TextField } from "@mui/material";
 import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro/SingleInputDateRangeField";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
@@ -16,11 +16,14 @@ import TouristCarousel from "../../components/Cards/TouristCarousel";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { Button } from "react-bootstrap";
-import { CITIES } from "../../consts";
 import { Select } from "antd";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import doma from "../../components/data/doma";
+import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineMinus } from "react-icons/ai";
+import { LicenseInfo } from "@mui/x-data-grid-pro";
+import CRangePicker from "../../components/DatePickers";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -62,12 +65,14 @@ const style = {
   boxShadow: 24,
   borderRadius: 5,
 };
+
+LicenseInfo.setLicenseKey(
+  "j0jTPl0USVkVZV0SsMjM1kDNyADM5cjM2ETPZJVSQhVRsIDN0YTM6IVREJ1T0b9586ef25c9853decfa7709eee27a1e"
+);
 const HomePage = () => {
   const [value, setValue] = useState(0);
   const [isShown, setIsShown] = useState(false);
   const [isCity, setIsCity] = useState(false);
-  const [isTash, setIsTash] = useState("");
-  const [search, setSearch] = useState("");
   const [countAdult, setCountAdult] = useState(1);
   const [countChildren, setCountChildren] = useState(0);
   const [countRooms, setCountRooms] = useState(1);
@@ -75,49 +80,12 @@ const HomePage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [debts, setDebts] = useState(
-    JSON.parse(localStorage.getItem(CITIES)) || [
-      "г.Ташкент",
-      "Андижан",
-      "Бухара",
-      "Джизак",
-      "Фергана",
-      "Кашкадарья",
-      "Каракалпакстан",
-      "Наманган",
-      "Навои",
-      "Самарканд",
-      "Сырдарья",
-      "Сурхандарьинская",
-      "о.Ташкент",
-      "Хорезм",
-    ]
-  );
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const handleValue = (e) => {
-    setIsTash(e.target.value);
-  };
-  const handleClick = (event) => {
-    setIsShown((current) => !current);
-  };
-
-  const handleCity = (event) => {
-    setIsCity((current) => !current);
-  };
-
-  // search
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value.trim().toLowerCase());
-  };
-
-  const debtsFound = debts.filter((debt) =>
-    debt.toLowerCase().includes(search)
-  );
 
   const increaseAdult = () => {
     setCountAdult(countAdult + 1);
@@ -150,6 +118,26 @@ const HomePage = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+
+  // Toggle the dropdown visibility
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Fragment>
       <section id="hotel_search">
@@ -273,7 +261,8 @@ const HomePage = () => {
                     </div>
                   </div>
                   <div className="position-relative calen">
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <CRangePicker />
+                    {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DemoContainer
                         components={["SingleInputDateRangeField"]}
                         className="input-value position-relative"
@@ -281,6 +270,19 @@ const HomePage = () => {
                         <label htmlFor="">Длительность пребывания </label>
                         <DateRangePicker
                           slots={{ field: SingleInputDateRangeField }}
+                          renderInput={(startProps, endProps) => (
+                            <>
+                              <input
+                                {...startProps}
+                                placeholder="Start Date" // Customize the start date placeholder
+                              />
+                              <span style={{ margin: "0 8px" }}>to</span>
+                              <input
+                                {...endProps}
+                                placeholder="End Date" // Customize the end date placeholder
+                              />
+                            </>
+                          )}
                         />
                         <span className="calendar">
                           <svg
@@ -328,44 +330,288 @@ const HomePage = () => {
                           </svg>
                         </span>
                       </DemoContainer>
-                    </LocalizationProvider>
+                    </LocalizationProvider> */}
                   </div>
-                  <div className="peoples position-relative">
-                    <label htmlFor="">Кол-во гостей</label>
-                    <button className="people-count" onClick={handleOpen}>
-                      {countAdult} {countAdult === 1 ? "взрослый" : "взрослых"}{" "}
-                      {countChildren} Детей {countRooms}{" "}
-                      {countRooms === 1 ? "номер" : "номера"}
-                    </button>
-                    <span className="nomer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="20"
-                        viewBox="0 0 24 20"
-                        fill="none"
-                      >
-                        <path
-                          d="M18.6161 18H19.1063C20.2561 18 21.1707 17.4761 21.9919 16.7436C24.078 14.8826 19.1741 13 17.5 13M15.5 3.06877C15.7271 3.02373 15.9629 3 16.2048 3C18.0247 3 19.5 4.34315 19.5 6C19.5 7.65685 18.0247 9 16.2048 9C15.9629 9 15.7271 8.97627 15.5 8.93123"
-                          stroke="#B7BFD5"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                        />
-                        <path
-                          d="M4.48131 14.1112C3.30234 14.743 0.211137 16.0331 2.09388 17.6474C3.01359 18.436 4.03791 19 5.32572 19H12.6743C13.9621 19 14.9864 18.436 15.9061 17.6474C17.7889 16.0331 14.6977 14.743 13.5187 14.1112C10.754 12.6296 7.24599 12.6296 4.48131 14.1112Z"
-                          stroke="#B7BFD5"
-                          stroke-width="1.5"
-                        />
-                        <path
-                          d="M13 5.5C13 7.70914 11.2091 9.5 9 9.5C6.79086 9.5 5 7.70914 5 5.5C5 3.29086 6.79086 1.5 9 1.5C11.2091 1.5 13 3.29086 13 5.5Z"
-                          stroke="#B7BFD5"
-                          stroke-width="1.5"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                  <p></p>
                   <div className="click">
+                    <div className="dropdown peoples" ref={dropdownRef}>
+                      <label htmlFor="">Кол-во гостей</label>
+
+                      <button
+                        className="people-count d-flex"
+                        onClick={toggleDropdown}
+                      >
+                        {" "}
+                        {countAdult}{" "}
+                        {countAdult === 1 ? "взрослый" : "взрослых"}{" "}
+                        {countChildren} Детей {countRooms}{" "}
+                        {countRooms === 1 ? "номер" : "номера"}
+                      </button>
+                      <span className="nomer">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="20"
+                          viewBox="0 0 24 20"
+                          fill="none"
+                        >
+                          <path
+                            d="M18.6161 18H19.1063C20.2561 18 21.1707 17.4761 21.9919 16.7436C24.078 14.8826 19.1741 13 17.5 13M15.5 3.06877C15.7271 3.02373 15.9629 3 16.2048 3C18.0247 3 19.5 4.34315 19.5 6C19.5 7.65685 18.0247 9 16.2048 9C15.9629 9 15.7271 8.97627 15.5 8.93123"
+                            stroke="#B7BFD5"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                          />
+                          <path
+                            d="M4.48131 14.1112C3.30234 14.743 0.211137 16.0331 2.09388 17.6474C3.01359 18.436 4.03791 19 5.32572 19H12.6743C13.9621 19 14.9864 18.436 15.9061 17.6474C17.7889 16.0331 14.6977 14.743 13.5187 14.1112C10.754 12.6296 7.24599 12.6296 4.48131 14.1112Z"
+                            stroke="#B7BFD5"
+                            stroke-width="1.5"
+                          />
+                          <path
+                            d="M13 5.5C13 7.70914 11.2091 9.5 9 9.5C6.79086 9.5 5 7.70914 5 5.5C5 3.29086 6.79086 1.5 9 1.5C11.2091 1.5 13 3.29086 13 5.5Z"
+                            stroke="#B7BFD5"
+                            stroke-width="1.5"
+                          />
+                        </svg>
+                      </span>
+                      {isOpen && (
+                        <div className="dropdown-content">
+                          <div className="clickmenu">
+                            <div className="menu-content">
+                              <div className="menu-item">
+                                <div className="d-flex flex-column ">
+                                  <h6>Взрослых</h6>
+                                  <p>13 лет и выше</p>
+                                </div>
+                                <div className="d-flex gap-3 align-items-center bordera">
+                                  {countAdult === 1 ? (
+                                    <button
+                                      className="decrease"
+                                      disabled
+                                      title="Decrease"
+                                      onClick={decreaseAdult}
+                                      value={1}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  ) : (
+                                    <button
+                                      className="decrease"
+                                      title="Decrease"
+                                      onClick={decreaseAdult}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  )}
+
+                                  <span>{countAdult}</span>
+                                  <button
+                                    className="increase"
+                                    title="Increase"
+                                    onClick={increaseAdult}
+                                  >
+                                    <AiOutlinePlus />
+                                  </button>
+                                </div>
+                              </div>
+                              <hr />
+                              <div className="menu-item">
+                                <div className="d-flex flex-column ">
+                                  <h6>Детей</h6>
+                                  <p>До 12 лет </p>
+                                </div>
+                                <div className="d-flex gap-3 align-items-center bordera">
+                                  {countChildren === 0 ? (
+                                    <button
+                                      className="decrease"
+                                      disabled
+                                      title="Decrease"
+                                      onClick={decreaseChildren}
+                                      value={0}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  ) : (
+                                    <button
+                                      className="decrease"
+                                      title="Decrease"
+                                      onClick={decreaseChildren}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  )}
+
+                                  <span>{countChildren}</span>
+                                  <button
+                                    className="increase"
+                                    title="Increase"
+                                    onClick={increaseChildren}
+                                  >
+                                    <AiOutlinePlus />
+                                  </button>
+                                </div>
+                              </div>
+                              <hr />
+                              <div className="menu-item">
+                                <div className="d-flex flex-column ">
+                                  <h6>Номера</h6>
+                                  <p>Минимум 1</p>
+                                </div>
+                                <div className="d-flex gap-3 align-items-center bordera">
+                                  {countRooms === 1 ? (
+                                    <button
+                                      className="decrease"
+                                      disabled
+                                      title="Decrease"
+                                      onClick={decreaseRooms}
+                                      value={1}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  ) : (
+                                    <button
+                                      className="decrease"
+                                      title="Decrease"
+                                      onClick={decreaseRooms}
+                                    >
+                                      <AiOutlineMinus />
+                                    </button>
+                                  )}
+
+                                  <span>{countRooms}</span>
+                                  <button
+                                    className="increase"
+                                    title="Increase"
+                                    onClick={increaseRooms}
+                                  >
+                                    <AiOutlinePlus />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    {/* <nav
+                      ref={dropdownRef}
+                      className={`menu-drop ${
+                        isActive ? "active" : "inactive"
+                      }`}
+                    >
+                      <div className="clickmenu">
+                        <div className="menu-content">
+                          <div className="menu-item">
+                            <div className="d-flex flex-column ">
+                              <h6>Взрослых</h6>
+                              <p>13 лет и выше</p>
+                            </div>
+                            <div className="d-flex gap-3 align-items-center bordera">
+                              {countAdult === 1 ? (
+                                <button
+                                  className="decrease"
+                                  disabled
+                                  title="Decrease"
+                                  onClick={decreaseAdult}
+                                  value={1}
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <button
+                                  className="decrease"
+                                  title="Decrease"
+                                  onClick={decreaseAdult}
+                                >
+                                  -
+                                </button>
+                              )}
+
+                              <span>{countAdult}</span>
+                              <button
+                                className="increase"
+                                title="Increase"
+                                onClick={increaseAdult}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <hr />
+                          <div className="menu-item">
+                            <div className="d-flex flex-column ">
+                              <h6>Детей</h6>
+                              <p>До 12 лет </p>
+                            </div>
+                            <div className="d-flex gap-3 align-items-center bordera">
+                              {countChildren === 0 ? (
+                                <button
+                                  className="decrease"
+                                  disabled
+                                  title="Decrease"
+                                  onClick={decreaseChildren}
+                                  value={0}
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <button
+                                  className="decrease"
+                                  title="Decrease"
+                                  onClick={decreaseChildren}
+                                >
+                                  -
+                                </button>
+                              )}
+
+                              <span>{countChildren}</span>
+                              <button
+                                className="increase"
+                                title="Increase"
+                                onClick={increaseChildren}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <hr />
+                          <div className="menu-item">
+                            <div className="d-flex flex-column ">
+                              <h6>Номера</h6>
+                              <p>Минимум 1</p>
+                            </div>
+                            <div className="d-flex gap-3 align-items-center bordera">
+                              {countRooms === 1 ? (
+                                <button
+                                  className="decrease"
+                                  disabled
+                                  title="Decrease"
+                                  onClick={decreaseRooms}
+                                  value={1}
+                                >
+                                  -
+                                </button>
+                              ) : (
+                                <button
+                                  className="decrease"
+                                  title="Decrease"
+                                  onClick={decreaseRooms}
+                                >
+                                  -
+                                </button>
+                              )}
+
+                              <span>{countRooms}</span>
+                              <button
+                                className="increase"
+                                title="Increase"
+                                onClick={increaseRooms}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </nav> */}
                     <Modal
                       closeTimeoutMS={3000}
                       className="modal-age"

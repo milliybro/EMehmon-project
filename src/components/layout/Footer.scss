@@ -30,20 +30,27 @@ footer {
           font-weight: 400;
           line-height: normal;
         }
+        @media (max-width: 450px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
+          text-align: center;
+        }
       }
     }
-    @media (max-width: 780px){
-      grid-template-columns: repeat(2,1fr);
+    @media (max-width: 780px) {
+      grid-template-columns: repeat(2, 1fr);
       grid-gap: 30px;
     }
-    @media (max-width: 450px){
-      grid-template-columns: repeat(1,1fr);
+    @media (max-width: 450px) {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
   .footer-bottom {
-   padding: 60px 0;
-   display: flex;
-   justify-content: center;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
     h5 {
       color: var(--Color-Pallete-Gray, #777e90);
       font-family: Onest;

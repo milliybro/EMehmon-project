@@ -118,6 +118,9 @@
       }
     }
   }
+  @media (max-width: 1380px) {
+    margin-top: 400px;
+  }
 }
 
 #favourite-houses {
@@ -168,6 +171,15 @@
   }
   .ant-select {
     background-color: transparent;
+    @media (max-width: 1380px) {
+      width: 500px !important;
+    }
+    @media (max-width: 630px) {
+      width: 350px !important;
+    }
+    @media (max-width: 430px) {
+      width: 250px !important;
+    }
   }
   .ant-select-selector {
     border: none !important;
@@ -184,8 +196,8 @@
       line-height: 130%; /* 20.8px */
     }
   }
-  @media (max-width: 1260px) {
-    flex-wrap: wrap;
+  @media (max-width: 1380px) {
+    flex-direction: column;
   }
 }
 
@@ -263,6 +275,15 @@
 .peoples {
   display: flex;
   flex-direction: column;
+  @media (max-width: 1380px) {
+    width: 500px !important;
+  }
+  @media (max-width: 630px) {
+    width: 350px !important;
+  }
+  @media (max-width: 430px) {
+    width: 250px !important;
+  }
 }
 .people-count {
   position: relative;
@@ -277,16 +298,13 @@
   position: absolute;
 }
 .menu-content {
-  // min-width: 450px !important;
-  // position: absolute;
-  // top: 80px;
-  // left: 630px;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.3);
   background-color: #fff;
   padding: 40px 20px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  width: 350px !important;
   gap: 0px;
   h6 {
     font-size: 16px;
@@ -310,10 +328,10 @@
         color: #777e90;
       }
       .increase {
-        padding: 0px 8px;
+        padding: 0px 7px 4px 7px;
       }
       .decrease {
-        padding: 0px 11px;
+        padding: 0px 7px 3px 7px;
       }
     }
     button {
@@ -388,6 +406,15 @@
   input {
     padding-left: 40px !important;
   }
+  @media (max-width: 1380px) {
+    width: 500px;
+  }
+  @media (max-width: 630px) {
+    width: 350px;
+  }
+  @media (max-width: 430px) {
+    width: 250px !important;
+  }
 }
 .calendar {
   position: absolute;
@@ -414,17 +441,122 @@
   z-index: -1;
 }
 
-
-
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
 }
 
-.ReactModal__Overlay--after-open{
+.ReactModal__Overlay--after-open {
   opacity: 1;
 }
 
-.ReactModal__Overlay--before-close{
+.ReactModal__Overlay--before-close {
   opacity: 0;
+}
+
+// dropdown
+
+.click {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-drop {
+  position: absolute;
+  top: 65px;
+  right: 20px;
+  width: 300px;
+  opacity: 0;
+  // visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.6s ease, transform 0.4s ease, visibility 0.4s;
+}
+
+.menu-drop.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+//
+
+.btn {
+  position: relative;
+  display: inline-block;
+}
+.button {
+  padding: 0;
+  width: 50px;
+  border: 0;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: 0;
+  font-size: 40px;
+}
+
+.dropdownim {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    padding: 8px 12px;
+  }
+
+  li:hover {
+    background-color: rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 100px !important;
+}
+
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  padding-right: 0px !important;
+}
+
+.MuiDateRangeCalendar-root,
+.css-e47596-MuiDateRangeCalendar-root {
+  &:last-child {
+    color: #3276ff !important;
+    background-color: #fff;
+  }
 }

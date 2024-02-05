@@ -67,8 +67,13 @@ const HeaderMain = () => {
     setIsLanguageValue(event.target.lastChild.textContent);
     setIsLanguage(false);
   };
+  const [isRotated, setIsRotated] = useState(false);
+
+  const handleRotate = () => {
+    setIsRotated(!isRotated);
+  };
   return (
-    <div id="header">
+    <div id="header" className={`your-component ${isRotated ? 'rotated' : ''}`} onClick={handleRotate}>
       <header className="">
         <Navbar expand="lg" className=" justify-content-between">
           <Container>
