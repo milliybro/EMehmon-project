@@ -150,9 +150,10 @@
 }
 
 .hoteli {
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  gap: 24px;
   input {
     border: none;
     border-radius: 16px;
@@ -292,6 +293,9 @@
   background: var(--Color-Pallete-Light, #f8f8fa) !important;
   padding: 16px 16px 16px 40px !important;
   border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .click {
