@@ -24,6 +24,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineMinus } from "react-icons/ai";
 import { LicenseInfo } from "@mui/x-data-grid-pro";
 import CRangePicker from "../../components/DatePickers";
+
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -132,8 +133,6 @@ const HomePage = () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-
-  // Toggle the dropdown visibility
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
