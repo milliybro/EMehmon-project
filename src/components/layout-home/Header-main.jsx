@@ -30,7 +30,6 @@ const HeaderMain = () => {
   const [modalIsCurrency, setIsCurrency] = useState(false);
   const [modalIsLanguage, setIsLanguage] = useState(false);
 
-
   function openModal() {
     setIsOpen(true);
   }
@@ -73,7 +72,11 @@ const HeaderMain = () => {
     setIsRotated(!isRotated);
   };
   return (
-    <div id="header" className={`your-component ${isRotated ? 'rotated' : ''}`} onClick={handleRotate}>
+    <div
+      id="header"
+      className={`your-component ${isRotated ? "rotated" : ""}`}
+      onClick={handleRotate}
+    >
       <header className="">
         <Navbar expand="lg" className=" justify-content-between">
           <Container>
@@ -124,7 +127,7 @@ const HeaderMain = () => {
                     </svg>
                   </Button>
                   <Modal
-                  closeTimeoutMS={3000}
+                    closeTimeoutMS={500}
                     id="video__modal"
                     isOpen={modalIsCurrency}
                     onAfterOpen={afterCurrencyModal}
@@ -192,7 +195,7 @@ const HeaderMain = () => {
                     </svg>
                   </Button>
                   <Modal
-                  closeTimeoutMS={3000}
+                    closeTimeoutMS={500}
                     id="video__modal"
                     isOpen={modalIsLanguage}
                     onAfterOpen={afterCurrencyModal}
@@ -217,7 +220,10 @@ const HeaderMain = () => {
                         </div>
                         <div className="currency-items">
                           {languageData.slice(0, 5).map((i, item) => (
-                            <Button onClick={handleLanguage} className="d-flex align-items-center gap-2 p-3">
+                            <Button
+                              onClick={handleLanguage}
+                              className="d-flex align-items-center gap-2 p-3"
+                            >
                               <Image src={i.image} />
                               <p>{i.title}</p>
                             </Button>
@@ -228,10 +234,13 @@ const HeaderMain = () => {
                         </div>
                         <div className="currency-items">
                           {languageData.slice(2, 27).map((i, item) => (
-                            <Button onClick={handleLanguage} className="d-flex align-items-center gap-2 p-3">
-                            <Image src={i.image} />
-                            <p>{i.title}</p>
-                          </Button>
+                            <Button
+                              onClick={handleLanguage}
+                              className="d-flex align-items-center gap-2 p-3"
+                            >
+                              <Image src={i.image} />
+                              <p>{i.title}</p>
+                            </Button>
                           ))}
                         </div>
                       </div>

@@ -264,88 +264,18 @@ const HomePage = () => {
                       Длительность пребывания
                     </label>
                     <CRangePicker />
-                    {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DemoContainer
-                        components={["SingleInputDateRangeField"]}
-                        className="input-value position-relative"
-                      >
-                        <label htmlFor="">Длительность пребывания </label>
-                        <DateRangePicker
-                          slots={{ field: SingleInputDateRangeField }}
-                          renderInput={(startProps, endProps) => (
-                            <>
-                              <input
-                                {...startProps}
-                                placeholder="Start Date" // Customize the start date placeholder
-                              />
-                              <span style={{ margin: "0 8px" }}>to</span>
-                              <input
-                                {...endProps}
-                                placeholder="End Date" // Customize the end date placeholder
-                              />
-                            </>
-                          )}
-                        />
-                        <span className="calendar">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 22 22"
-                            fill="none"
-                          >
-                            <path
-                              d="M17 1V3M5 1V3"
-                              stroke="#B7BFD5"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M10.9955 12H11.0045M10.9955 16H11.0045M14.991 12H15M7 12H7.00897M7 16H7.00897"
-                              stroke="#B7BFD5"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M2.5 7H19.5"
-                              stroke="#B7BFD5"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M1.5 11.2432C1.5 6.88594 1.5 4.70728 2.75212 3.35364C4.00424 2 6.01949 2 10.05 2H11.95C15.9805 2 17.9958 2 19.2479 3.35364C20.5 4.70728 20.5 6.88594 20.5 11.2432V11.7568C20.5 16.1141 20.5 18.2927 19.2479 19.6464C17.9958 21 15.9805 21 11.95 21H10.05C6.01949 21 4.00424 21 2.75212 19.6464C1.5 18.2927 1.5 16.1141 1.5 11.7568V11.2432Z"
-                              stroke="#B7BFD5"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M2 7H20"
-                              stroke="#B7BFD5"
-                              stroke-width="1.5"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </span>
-                      </DemoContainer>
-                    </LocalizationProvider> */}
                   </div>
                   <div className="click">
                     <div className="dropdown peoples" ref={dropdownRef}>
                       <label htmlFor="">Кол-во гостей</label>
-
                       <button
                         className="people-count d-flex"
                         onClick={toggleDropdown}
                       >
-
                         {countAdult}{" "}
                         {countAdult === 1 ? "взрослый" : "взрослых"},{" "}
-                        {countChildren} детей, {countRooms}{" "}
+                        {countChildren == 0 ? null : `${countChildren} детей, `}
+                        {countRooms}
                         {countRooms === 1 ? "номер" : "номера"}
                       </button>
                       <span className="nomer">
@@ -493,127 +423,6 @@ const HomePage = () => {
                         </div>
                       )}
                     </div>
-                    {/* <nav
-                      ref={dropdownRef}
-                      className={`menu-drop ${
-                        isActive ? "active" : "inactive"
-                      }`}
-                    >
-                      <div className="clickmenu">
-                        <div className="menu-content">
-                          <div className="menu-item">
-                            <div className="d-flex flex-column ">
-                              <h6>Взрослых</h6>
-                              <p>13 лет и выше</p>
-                            </div>
-                            <div className="d-flex gap-3 align-items-center bordera">
-                              {countAdult === 1 ? (
-                                <button
-                                  className="decrease"
-                                  disabled
-                                  title="Decrease"
-                                  onClick={decreaseAdult}
-                                  value={1}
-                                >
-                                  -
-                                </button>
-                              ) : (
-                                <button
-                                  className="decrease"
-                                  title="Decrease"
-                                  onClick={decreaseAdult}
-                                >
-                                  -
-                                </button>
-                              )}
-
-                              <span>{countAdult}</span>
-                              <button
-                                className="increase"
-                                title="Increase"
-                                onClick={increaseAdult}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                          <hr />
-                          <div className="menu-item">
-                            <div className="d-flex flex-column ">
-                              <h6>Детей</h6>
-                              <p>До 12 лет </p>
-                            </div>
-                            <div className="d-flex gap-3 align-items-center bordera">
-                              {countChildren === 0 ? (
-                                <button
-                                  className="decrease"
-                                  disabled
-                                  title="Decrease"
-                                  onClick={decreaseChildren}
-                                  value={0}
-                                >
-                                  -
-                                </button>
-                              ) : (
-                                <button
-                                  className="decrease"
-                                  title="Decrease"
-                                  onClick={decreaseChildren}
-                                >
-                                  -
-                                </button>
-                              )}
-
-                              <span>{countChildren}</span>
-                              <button
-                                className="increase"
-                                title="Increase"
-                                onClick={increaseChildren}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                          <hr />
-                          <div className="menu-item">
-                            <div className="d-flex flex-column ">
-                              <h6>Номера</h6>
-                              <p>Минимум 1</p>
-                            </div>
-                            <div className="d-flex gap-3 align-items-center bordera">
-                              {countRooms === 1 ? (
-                                <button
-                                  className="decrease"
-                                  disabled
-                                  title="Decrease"
-                                  onClick={decreaseRooms}
-                                  value={1}
-                                >
-                                  -
-                                </button>
-                              ) : (
-                                <button
-                                  className="decrease"
-                                  title="Decrease"
-                                  onClick={decreaseRooms}
-                                >
-                                  -
-                                </button>
-                              )}
-
-                              <span>{countRooms}</span>
-                              <button
-                                className="increase"
-                                title="Increase"
-                                onClick={increaseRooms}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </nav> */}
                     <Modal
                       closeTimeoutMS={3000}
                       className="modal-age"
@@ -856,7 +665,7 @@ const HomePage = () => {
                     )}
                     {isShown && <Box />}
                   </div>
-                  <Button className="d-flex gap-2">
+                  <Button className="d-flex search-button gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="22"
